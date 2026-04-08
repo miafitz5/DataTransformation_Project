@@ -14,10 +14,42 @@ library(knitr)
 
 ```
 
-### R Markdown
 
-```{r}
+## Introduction 
 
 
-```
+Describe your dataset and its topic, and summarize what it measures,
+and its sample size. Include a link to your data set.
+
+
+### Data Import
+
+
+Discuss any steps you took to load and clean the data in as non-technical
+terms as you can. Include your data import/cleaning chunk here, but keep code folding closed by
+default. If you needed to process the date data, keep that code here as well.
+
+
+### Exploratory Data Analysis 
+### add subsections with informative titles
+
+
+a. Explore your variables. You don’t need to include every plot/table you try out, but include the
+clearest, most illustrating ones. At the very least, explore your date variable, quantitative variable,
+and the bivariate relationship between them.
+
+b. Depending on the scale of your date data, explore any notable patterns (number of observations,
+value of quantitative variable, etc.) that show up relating to day of the week, month of the year,
+etc.
+
+c. Similarly, depending on the scale of your date data, explore any notable patterns that show up
+relating to weekend versus weekday, season/quarter of the year, etc. 
+
+
+### Conclusion 
+
+
+Summarize your findings.
+
+
 
