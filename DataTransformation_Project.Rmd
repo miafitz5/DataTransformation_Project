@@ -1,0 +1,23 @@
+---
+title: "DataTransformation_Project"
+author: "Mia Fitzgerald"
+date: "4/8/2026"
+output:
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=TRUE, message=TRUE)
+library(tidyverse)
+library(knitr)
+
+```
+
+### R Markdown
+
+```{r}
+
+
+```
+
