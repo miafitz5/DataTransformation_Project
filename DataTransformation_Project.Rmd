@@ -1,5 +1,5 @@
 ---
-title: "DataTransformation_Project"
+title: "Caitlin Clark Career Stats Insights"
 author: "Mia Fitzgerald & Angela McMahon"
 date: "4/8/2026"
 output:
