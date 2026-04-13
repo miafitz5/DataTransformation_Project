@@ -24,17 +24,16 @@ and its sample size. Include a link to your data set.
 
 ### Data Import
 
-From the data set table, made the data into a csv file format. Copied and pasted this into a text file. Here the column names including symbols like % and a missing column name were altered to correspond well with R. This file was saved as a csv file and imported into the R markdown file. Once the data set was loaded in, for both the columns 'Away' and 'Games Started' the 'Yes' notation was symbolized by a character. So, this was changed to a Yes or No input. The 'Results' column also had both W or L for wins and losses and the score at the end of each game. This column was separated into 'Results' which records wins 'W' and losses 'L', then 'Points' which is the score at the end of the game for each team. To fill missing values and merge we used too_few/too_many inside of widening the column.
+From the data set table, made the data into a csv file format. Copied and pasted this into a text file. Here the column names including symbols like % and a missing column name were altered to correspond well with R. This file was saved as a csv file and imported into the R markdown file. Once the data set was loaded in, for both the columns 'Away' and 'Games Started' the 'Yes' notation was symbolized by a character. So, this was changed to a Yes or No input. The 'Results' column also had both W or L for wins and losses and the score at the end of each game. This column was separated into 'Results' which records wins 'W' and losses 'L', then 'Points' which is the score at the end of the game for each team. To fill missing values and merge we used too_few/too_many inside of widening the column. Once these adjustments were made, this new, tidy data set was restored. 
 
 
 ```{r}
 library(readr)
 library(tidyr)
 CC_career_stats <- read_csv("CC_career_stats.csv")
-head(CC_career_stats)
-CC_career_stats%>%
+CC_career_stats <- CC_career_stats%>%
   mutate(Away=if_else(Away=="@","Yes","No"), Away=coalesce(Away, "No"))%>%
-  mutate(GS=if_else(GS=="*","Yes", "No"))%>%   #did not fill NA because all are Yes 
+  mutate(GS=if_else(GS=="*","Yes", "No"))%>%
   separate_wider_delim(
     cols=Result,
     delim=" ",
@@ -42,7 +41,7 @@ CC_career_stats%>%
     too_few="align_start",
     too_many="merge"
   )
-
+head(CC_career_stats)
 ```
 
 
@@ -53,6 +52,7 @@ CC_career_stats%>%
 a. Explore your variables. You don’t need to include every plot/table you try out, but include the
 clearest, most illustrating ones. At the very least, explore your date variable, quantitative variable,
 and the bivariate relationship between them.
+
 
 b. Depending on the scale of your date data, explore any notable patterns (number of observations,
 value of quantitative variable, etc.) that show up relating to day of the week, month of the year,
