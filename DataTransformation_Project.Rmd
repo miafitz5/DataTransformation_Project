@@ -31,8 +31,20 @@ default. If you needed to process the date data, keep that code here as well.
 
 ```{r}
 library(readr)
+library(tidyr)
 CC_career_stats <- read_csv("CC_career_stats.csv")
 head(CC_career_stats)
+CC_career_stats%>%
+  mutate(Away=if_else(Away=="@","Yes","No"), Away=coalesce(Away, "No"))%>%
+  mutate(GS=if_else(GS=="*","Yes", "No"))%>%   #did not fill NA because all are Yes 
+  separate_wider_delim(
+    cols=Result,
+    delim=" ",
+    names=c("Result", "Points"),
+    too_few="align_start",
+    too_many="merge"
+  )
+
 ```
 
 
