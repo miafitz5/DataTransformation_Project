@@ -24,10 +24,8 @@ and its sample size. Include a link to your data set.
 
 ### Data Import
 
+From the data set table, made the data into a csv file format. Copied and pasted this into a text file. Here the column names including symbols like % and a missing column name were altered to correspond well with R. This file was saved as a csv file and imported into the R markdown file. Once the data set was loaded in, for both the columns 'Away' and 'Games Started' the 'Yes' notation was symbolized by a character. So, this was changed to a Yes or No input. The 'Results' column also had both W or L for wins and losses and the score at the end of each game. This column was separated into 'Results' which records wins 'W' and losses 'L', then 'Points' which is the score at the end of the game for each team. To fill missing values and merge we used too_few/too_many inside of widening the column.
 
-Discuss any steps you took to load and clean the data in as non-technical
-terms as you can. Include your data import/cleaning chunk here, but keep code folding closed by
-default. If you needed to process the date data, keep that code here as well.
 
 ```{r}
 library(readr)
