@@ -29,6 +29,12 @@ Discuss any steps you took to load and clean the data in as non-technical
 terms as you can. Include your data import/cleaning chunk here, but keep code folding closed by
 default. If you needed to process the date data, keep that code here as well.
 
+```{r}
+library(readr)
+CC_career_stats <- read_csv("CC_career_stats.csv")
+head(CC_career_stats)
+```
+
 
 ### Exploratory Data Analysis 
 ### add subsections with informative titles
