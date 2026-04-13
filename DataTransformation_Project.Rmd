@@ -10,7 +10,9 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=TRUE, message=TRUE)
 library(tidyverse)
+library(lubridate)
 library(knitr)
+library(ggplot2)
 
 ```
 
@@ -52,6 +54,18 @@ head(CC_career_stats)
 a. Explore your variables. You don’t need to include every plot/table you try out, but include the
 clearest, most illustrating ones. At the very least, explore your date variable, quantitative variable,
 and the bivariate relationship between them.
+
+
+```{r}
+CC_career_stats %>%
+  filter(!is.na(Date)) %>%
+  ggplot(aes(x = yday(Date), y = `3PP`, color > 0.5)) +
+  geom_point(aes(color = `3PP` > 0.6)) +
+  geom_line() +
+  facet_wrap(~year(Date))
+
+```
+
 
 
 b. Depending on the scale of your date data, explore any notable patterns (number of observations,
