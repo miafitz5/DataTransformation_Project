@@ -63,7 +63,8 @@ CC_career_stats %>%
   filter(!is.na(Date)) %>%
   ggplot(aes(x = yday(Date), y = `3PP`)) +
   geom_point(aes(color = `3PP` > 0.5), alpha = 0.6) +
-  facet_wrap(~year(Date))
+  facet_wrap(~year(Date))+
+  labs(x="Days of a year", y="Three-point percentage")
   
 #instances where she shot over 50 percent from the FT over her career (A LOT)
 CC_career_stats %>%
@@ -75,13 +76,15 @@ CC_career_stats %>%
 CC_career_stats %>%
   filter(AST < 100) %>% #outlier removed
   ggplot(aes(x = Away, y = AST)) + 
-  geom_boxplot(alpha = 0.7) 
+  geom_boxplot(alpha = 0.7)+
+  labs(y="Assists")
 
 # Instances where CC scored over 35 points in her career 
 CC_career_stats %>%
   filter(PTS < 100) %>%
   ggplot(aes(x = Date, y = PTS, color = PTS > 35)) +
-  geom_point(alpha = 0.6)
+  geom_point(alpha = 0.6)+
+  labs(y="Points")
 
 #Difference in counts of rebound type throughout her career (MORE DRB)
 CC_career_stats %>%
@@ -90,6 +93,14 @@ CC_career_stats %>%
   ggplot(aes(x = yday(Date), y = Count)) +
   geom_point(alpha = 0.5) + 
   facet_wrap(~Rebound_Type)
+
+CC_career_stats %>%
+  pivot_longer(cols = c(ORB, DRB), names_to = "Rebound_Type", values_to = "Count") %>%
+  filter(Count < 20)%>%
+  ggplot(aes(x=Count))+
+  geom_histogram(binwidth=1)+
+  facet_wrap(~Rebound_Type)+
+  labs(x="Number of Rebounds", y="Number of Occasions")
 
 #Dates of limited turnovers (0 and 1) in her career from end of 2020-2021 to 2023-2024 seasons
 CC_career_stats %>%
