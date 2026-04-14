@@ -43,6 +43,7 @@ CC_career_stats <- CC_career_stats%>%
     too_few="align_start",
     too_many="merge"
   )
+
 head(CC_career_stats)
 
 ```
@@ -58,19 +59,15 @@ and the bivariate relationship between them.
 
 
 ```{r}
-#instances where she shot over 50 percent from the 3 over her career 
+#instances where she shot over 60 percent from the 3 over her career (More consistent in last two seasons)
 CC_career_stats %>%
   filter(!is.na(Date)) %>%
-  ggplot(aes(x = yday(Date), y = `3PP`)) +
-  geom_point(aes(color = `3PP` > 0.5), alpha = 0.6) +
-  facet_wrap(~year(Date))+
-  labs(x="Days of a year", y="Three-point percentage")
-  
-#instances where she shot over 50 percent from the FT over her career (A LOT)
-CC_career_stats %>%
-  filter(!is.na(Date), !is.na(FTP)) %>%
-  ggplot(aes(x = yday(Date), y = FTP)) +
-  geom_point(alpha = 0.5) 
+  mutate(Season = ifelse(month(Date) >= 10, year(Date), year(Date) - 1)) %>% 
+  mutate(Season_Label = paste("Season ", as.numeric(factor(Season)))) %>%
+  ggplot(aes(x = Date, y = `3PP`)) +
+  geom_point(aes(color = `3PP` > 0.6), alpha = 0.5) +
+  facet_wrap(~Season_Label, scales = "free_x") +
+  labs(x="Month", y="Three-point percentage")
 
 # home or away vs AST (higher rate when AWAY)
 CC_career_stats %>%
@@ -79,21 +76,14 @@ CC_career_stats %>%
   geom_boxplot(alpha = 0.7)+
   labs(y="Assists")
 
-# Instances where CC scored over 35 points in her career 
+# Instances where CC scored over 40 points in her career 
 CC_career_stats %>%
   filter(PTS < 100) %>%
-  ggplot(aes(x = Date, y = PTS, color = PTS > 35)) +
+  ggplot(aes(x = Date, y = PTS, color = PTS > 40)) +
   geom_point(alpha = 0.6)+
   labs(y="Points")
 
 #Difference in counts of rebound type throughout her career (MORE DRB)
-CC_career_stats %>%
-  pivot_longer(cols = c(ORB, DRB), names_to = "Rebound_Type", values_to = "Count") %>%
-  filter(Count < 20) %>%
-  ggplot(aes(x = yday(Date), y = Count)) +
-  geom_point(alpha = 0.5) + 
-  facet_wrap(~Rebound_Type)
-
 CC_career_stats %>%
   pivot_longer(cols = c(ORB, DRB), names_to = "Rebound_Type", values_to = "Count") %>%
   filter(Count < 20)%>%
@@ -117,12 +107,12 @@ CC_career_stats %>%
 #After 11 AST there are no games lost
 CC_career_stats %>%
   filter(AST < 100) %>%
-  mutate(Season = ifelse(month(Date) >= 10, 
-                         year(Date), 
-                         year(Date) - 1)) %>%
+  mutate(Season = ifelse(month(Date) >= 10, year(Date), year(Date) - 1)) %>%
+  mutate(Season_Label = paste("Season ", as.numeric(factor(Season)))) %>%
   ggplot(aes(x = Date, y = AST, color = Result, group = interaction(Result, Season))) +
-  geom_line() + 
-  facet_wrap(~Season, scales = "free_x")
+  scale_color_manual(values = c("W" = "#00C805", "L" = "#FF1300")) +
+  geom_line() +
+  facet_wrap(~Season_Label, scales = "free_x")
 
 ```
 
