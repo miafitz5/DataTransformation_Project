@@ -87,7 +87,7 @@ CC_career_stats %>%
 CC_career_stats %>%
   pivot_longer(cols = c(ORB, DRB), names_to = "Rebound_Type", values_to = "Count") %>%
   filter(Count < 20) %>%
-  ggplot(aes(x = yday(Date), y = Count, color = Rebound_Type)) +
+  ggplot(aes(x = yday(Date), y = Count)) +
   geom_point(alpha = 0.5) + 
   facet_wrap(~Rebound_Type)
 
