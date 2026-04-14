@@ -117,8 +117,12 @@ CC_career_stats %>%
 #After 11 AST there are no games lost
 CC_career_stats %>%
   filter(AST < 100) %>%
-  ggplot(aes(x = Date, y = AST, color = Result)) +
-  geom_line() 
+  mutate(Season = ifelse(month(Date) >= 10, 
+                         year(Date), 
+                         year(Date) - 1)) %>%
+  ggplot(aes(x = Date, y = AST, color = Result, group = interaction(Result, Season))) +
+  geom_line() + 
+  facet_wrap(~Season, scales = "free_x")
 
 ```
 
