@@ -122,7 +122,7 @@ b. Depending on the scale of your date data, explore any notable patterns (numbe
 value of quantitative variable, etc.) that show up relating to day of the week, month of the year,
 etc.
 
-# days of the week and results of the game 
+# days of the week and results of the game (most are from the weekend but plays more games during the week)
 ```{r}
 CC_career_stats%>%
   mutate(Weekday= wday(Date, label=TRUE, abbr=TRUE))%>%
@@ -138,25 +138,27 @@ CC_career_stats%>%
 ```{r}
 CC_career_stats%>%
   mutate(Season = ifelse(month(Date) >= 10, year(Date), year(Date) - 1))%>%
-  ggplot(aes(x=Season))+
-  geom_bar()
+  drop_na(Season)%>%
+  mutate(Season_Label = paste("Season ", as.numeric(factor(Season)))) %>%
+  ggplot(aes(x=Season_Label))+
+  geom_bar() 
 ```
 
 c. Similarly, depending on the scale of your date data, explore any notable patterns that show up
 relating to weekend versus weekday, season/quarter of the year, etc. 
 
 ```{r}
-
-Days_levels <- c("Weekend","Weekday")
 CC_career_stats%>%
   mutate(WkDay=wday(Date, label=TRUE, abbr=TRUE))%>%
   mutate(WeekDays= fct_collapse(WkDay,
                                "Weekend"=c("Sun","Sat"),
                                "Weekday"=c("Mon","Tue","Wed","Thu","Fri")))%>%
   drop_na(WkDay)%>%
-  ggplot(aes(x=WeekDays, fill=Result))+
-  geom_bar()
-  
+  ggplot(aes(x=WeekDays, fill=Type)) +
+  geom_bar(color = "white", linewidth = 0.3) +  # Adding a white border
+  labs(x = "Day Type")
+  #non-conf difference in the chart, everything else is split and more games during the week 
+
 ```
 
 
