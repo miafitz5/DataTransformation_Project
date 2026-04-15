@@ -9,11 +9,11 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=TRUE, message=TRUE)
-library(tidyverse)
+library(forcats)
 library(lubridate)
 library(knitr)
 library(ggplot2)
-
+library(tidyverse)
 ```
 
 
@@ -125,23 +125,39 @@ etc.
 # days of the week and results of the game 
 ```{r}
 CC_career_stats%>%
-  mutate(weekday= wday(Date, label=TRUE, abbr=TRUE))%>%
-  count(Result, weekday)%>%
+  mutate(Weekday= wday(Date, label=TRUE, abbr=TRUE))%>%
+  count(Result, Weekday)%>%
+  drop_na(Weekday)%>%
   arrange(desc(n))%>%
   rename(Count=n)%>%
   kable()
-#need to remove NA row 
+
 ```
 
 # new type of plot for date data, interesting to see her increase in playing in games over the years 
 ```{r}
 CC_career_stats%>%
-  ggplot(aes(x=Date)) + 
-	geom_freqpoly(binwidth = 365)
+  mutate(Season = ifelse(month(Date) >= 10, year(Date), year(Date) - 1))%>%
+  ggplot(aes(x=Season))+
+  geom_bar()
 ```
 
 c. Similarly, depending on the scale of your date data, explore any notable patterns that show up
 relating to weekend versus weekday, season/quarter of the year, etc. 
+
+```{r}
+
+Days_levels <- c("Weekend","Weekday")
+CC_career_stats%>%
+  mutate(WkDay=wday(Date, label=TRUE, abbr=TRUE))%>%
+  mutate(WeekDays= fct_collapse(WkDay,
+                               "Weekend"=c("Sun","Sat"),
+                               "Weekday"=c("Mon","Tue","Wed","Thu","Fri")))%>%
+  drop_na(WkDay)%>%
+  ggplot(aes(x=WeekDays, fill=Result))+
+  geom_bar()
+  
+```
 
 
 ### Conclusion 
