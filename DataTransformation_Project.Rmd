@@ -76,6 +76,7 @@ CC_career_stats %>%
 
 Note that she had more instances in her second season but also that she reaches 60 percent at least once as season. 
 
+
 # Caitlin's Assist's on Home vs. Away
 
 ```{r}
@@ -87,6 +88,10 @@ CC_career_stats %>%
 
 ```
 
+
+She averaged more assists at away games than home games. 
+
+
 # Instances where Caitlin Scored over 40 Points in her Career
 
 ```{r}
@@ -97,6 +102,7 @@ CC_career_stats %>%
   labs(x = "Year", y="Points")
 
 ```
+
 
 #Difference in Counts of Rebound Type Throughout her Career
 
@@ -111,6 +117,10 @@ CC_career_stats %>%
 
 ```
 
+
+The number of offensive rebounds are consistently low while her defense rebound count is much higher and more spread out.
+
+
 #Dates, Results, and Field Goal Percentage of Limited Turnover Games (0 & 1) in her Career
 
 ```{r}
@@ -121,6 +131,7 @@ CC_career_stats %>%
 
 ```
 
+
 #Games Caitlin had Greater than 12 Assists Lead to Wins
 
 ```{r}
@@ -130,6 +141,7 @@ CC_career_stats %>%
   kable()
 
 ```
+
 
 #Difference in Result Based on her Assists 
 
@@ -144,6 +156,9 @@ CC_career_stats %>%
   facet_wrap(~Season_Label, scales = "free_x")
 
 ```
+
+
+When she reaches 11 assists in a game she has not lost. The times her team as lost, she commonly has a lower assist rate. 
 
 
 b. Depending on the scale of your date data, explore any notable patterns (number of observations,
@@ -163,7 +178,9 @@ CC_career_stats%>%
 
 ```
 
+
 The table above displays the day of the week and result of the game pair count. It is interesting to see there are the most wins on Saturday and Sunday. This could be due to having more games on weekend days compared to throughout the week, but more investigation is needed to make this conclusion.
+
 
 ```{r}
 
@@ -189,7 +206,9 @@ CC_career_stats%>%
 
 ```
 
+
 Exploring the types of games she played in on the weekend versus the weekdays. Now we can see there is actually more games being played on the weekdays compared to the weekends. Highlighting the type of game helps us see how the amount they played in March Madness games (colors labeled starting with 'ROUND') and how often are those games on the weekend versus weekdays. We can see her and the team have been in more ROUND 16 games on the weekend compared to on the weekdays. 
+
 
 # Games Caitlin Played in per Season 
 
@@ -202,7 +221,9 @@ CC_career_stats%>%
   geom_bar() 
 ```
 
+
 Looking at the different seasons that Caitlin has played in, we can see the amount of games per season has increased gradually. However, she has played in about 30 games since the beginning of her career. The large jump between seasons 2 and 3 support her player development and determination. 
+
 
 ### Conclusion 
 
