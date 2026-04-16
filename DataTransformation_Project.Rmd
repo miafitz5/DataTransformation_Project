@@ -21,7 +21,8 @@ library(tidyverse)
 
 
 Describe your dataset and its topic, and summarize what it measures,
-and its sample size. Include a link to your data set.
+and its sample size. 
+Link: https://www.sports-reference.com/cbb/players/caitlin-clark-1/gamelog/ 
 
 
 ### Data Import
@@ -57,6 +58,7 @@ a. Explore your variables. You don’t need to include every plot/table you try 
 clearest, most illustrating ones. At the very least, explore your date variable, quantitative variable,
 and the bivariate relationship between them.
 
+# Instances Caitlin Shot Over 60% from the 3-Point Line
 
 ```{r}
 #instances where she shot over 60 percent from the 3 over her career (More consistent in last two seasons)
@@ -69,21 +71,33 @@ CC_career_stats %>%
   facet_wrap(~Season_Label, scales = "free_x") +
   labs(x="Month", y="Three-point percentage")
 
-# home or away vs AST (higher rate when AWAY)
+```
+
+# Caitlin's Assist's on Home vs. Away
+
+```{r}
 CC_career_stats %>%
   filter(AST < 100) %>% #outlier removed
   ggplot(aes(x = Away, y = AST)) + 
   geom_boxplot(alpha = 0.7)+
   labs(y="Assists")
 
-# Instances where CC scored over 40 points in her career 
+```
+
+# Instances where Caitlin Scored over 40 Points in her Career
+
+```{r}
 CC_career_stats %>%
   filter(PTS < 100) %>%
   ggplot(aes(x = Date, y = PTS, color = PTS > 40)) +
   geom_point(alpha = 0.6)+
-  labs(y="Points")
+  labs(x = "Year", y="Points")
 
-#Difference in counts of rebound type throughout her career (MORE DRB)
+```
+
+#Difference in Counts of Rebound Type Throughout her Career
+
+```{r}
 CC_career_stats %>%
   pivot_longer(cols = c(ORB, DRB), names_to = "Rebound_Type", values_to = "Count") %>%
   filter(Count < 20)%>%
@@ -92,19 +106,31 @@ CC_career_stats %>%
   facet_wrap(~Rebound_Type)+
   labs(x="Number of Rebounds", y="Number of Occasions")
 
-#Dates of limited turnovers (0 and 1) in her career from end of 2020-2021 to 2023-2024 seasons
+```
+
+#Dates, Results, and Field Goal Percentage of Limited Turnover Games (0 & 1) in her Career
+
+```{r}
 CC_career_stats %>%
   select(Date, TOV, FGP, Result) %>%
   filter(TOV == 0 | TOV == 1) %>%
   kable()
 
-#Games where she has more than 12 assists lead to wins
+```
+
+#Games Caitlin had Greater than 12 Assists Lead to Wins
+
+```{r}
 CC_career_stats %>%
   select(TOV, AST, Date, Result) %>%
   filter(!is.na(Date), AST > 12) %>%
   kable()
 
-#After 11 AST there are no games lost
+```
+
+#Difference in Result Based on her Assists 
+
+```{r}
 CC_career_stats %>%
   filter(AST < 100) %>%
   mutate(Season = ifelse(month(Date) >= 10, year(Date), year(Date) - 1)) %>%
@@ -115,7 +141,6 @@ CC_career_stats %>%
   facet_wrap(~Season_Label, scales = "free_x")
 
 ```
-
 
 
 b. Depending on the scale of your date data, explore any notable patterns (number of observations,
@@ -164,6 +189,7 @@ CC_career_stats%>%
 Exploring the types of games she played in on the weekend versus the weekdays. Now we can see there is actually more games being played on the weekdays compared to the weekends. Highlighting the type of game helps us see how the amount they played in March Madness games (colors labeled starting with 'ROUND') and how often are those games on the weekend versus weekdays. We can see her and the team have been in more ROUND 16 games on the weekend compared to on the weekdays. 
 
 # Games Caitlin Played in per Season 
+
 ```{r}
 CC_career_stats%>%
   mutate(Season = ifelse(month(Date) >= 10, year(Date), year(Date) - 1))%>%
