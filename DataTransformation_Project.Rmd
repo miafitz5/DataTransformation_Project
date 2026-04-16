@@ -73,6 +73,9 @@ CC_career_stats %>%
 
 ```
 
+
+Note that she had more instances in her second season but also that she reaches 60 percent at least once as season. 
+
 # Caitlin's Assist's on Home vs. Away
 
 ```{r}
