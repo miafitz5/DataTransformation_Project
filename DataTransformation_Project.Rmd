@@ -234,6 +234,7 @@ Looking at the different seasons that Caitlin has played in, we can see the amou
 
 ### Conclusion 
 
+This data set gives a comprehensive view of Caitlin Clark's stats for the games she has played in for the past 4 seasons. There are many important insights this data set can show. Overall trends we are shown are that she has played more each year, and has become a much better shooter in the past two years. We did not test the significance of this however it is displayed in the graphs and tables above. Caitlin averages more assists during a game at home versus an away game. 
 
 Summarize your findings.
 
