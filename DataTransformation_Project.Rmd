@@ -182,9 +182,16 @@ CC_career_stats%>%
 The table above displays the day of the week and result of the game pair count. It is interesting to see there are the most wins on Saturday and Sunday. This could be due to having more games on weekend days compared to throughout the week, but more investigation is needed to make this conclusion.
 
 
+### Number of Games Caitlin Played in each Month 
 ```{r}
-
+CC_career_stats%>%
+  mutate(month= month(Date, label=TRUE, abbr=TRUE))%>%
+  count(month)%>%
+  drop_na(month)%>%
+  kable()
 ```
+
+We can see the distribution of games is higher in the winter months which makes sense with the sports season. However, we can also see she played in many games in March and some in April which could be March Madness games. 
 
 
 c. Similarly, depending on the scale of your date data, explore any notable patterns that show up
