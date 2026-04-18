@@ -1,5 +1,5 @@
 ---
-title: "Caitlin Clark Career Stats Insights"
+title: "Caitlin Clark Career Stat. Insights"
 author: "Mia Fitzgerald & Angela McMahon"
 date: "4/8/2026"
 output:
@@ -19,11 +19,11 @@ library(tidyverse)
 
 ## Introduction 
 
-We used a dataset that tracks Caitlin Clark’s complete college basketball career at the University of Iowa, spanning from the start of the 2020-2021 season to the end of the 2023-2024 season. It measures her game-by-game performance across various categories, including her scoring volume, three-point shooting, assists, and defensive stats like rebounds and steals. These metrics provide a clear picture of her offensive efficiency and how much she contributed to the team's success in each matchup throughout her four years. The dataset contains a sample size of exactly 139 games, representing every game she made an appearance at during her time as a Hawkeye.
+We used a data set that tracks Caitlin Clark’s complete college basketball career at the University of Iowa, spanning from the start of the 2020-2021 season to the end of the 2023-2024 season. It measures her game-by-game performance across various categories, including her scoring volume, three-point shooting, assists, and defensive stats like rebounds and steals. These metrics provide a clear picture of her offensive efficiency and how much she contributed to the team's success in each match up throughout her four years. The data set contains a sample size of exactly 139 games, representing every game she made an appearance at during her time as a Hawkeye.
 Link: https://www.sports-reference.com/cbb/players/caitlin-clark-1/gamelog/ 
 
 
-### Data Import
+## Data Import
 
 From the data set table, made the data into a csv file format. Copied and pasted this into a text file. Here the column names including symbols like % and a missing column name were altered to correspond well with R. This file was saved as a csv file and imported into the R markdown file. Once the data set was loaded in, for both the columns 'Away' and 'Games Started' the 'Yes' notation was symbolized by a character. So, this was changed to a Yes or No input. The 'Results' column also had both W or L for wins and losses and the score at the end of each game. This column was separated into 'Results' which records wins 'W' and losses 'L', then 'Points' which is the score at the end of the game for each team. To fill missing values and merge we used too_few/too_many inside of widening the column. Once these adjustments were made, this new, tidy data set was restored. 
 
@@ -48,15 +48,9 @@ head(CC_career_stats)
 ```
 
 
-### Exploratory Data Analysis 
-### add subsections with informative titles
+## Exploratory Data Analysis
 
-
-a. Explore your variables. You don’t need to include every plot/table you try out, but include the
-clearest, most illustrating ones. At the very least, explore your date variable, quantitative variable,
-and the bivariate relationship between them.
-
-# Instances Caitlin Shot Over 60% from the 3-Point Line
+### Instances Caitlin Shot Over 60% from the 3-Point Line
 
 ```{r}
 #instances where she shot over 60 percent from the 3 over her career (More consistent in last two seasons)
@@ -71,11 +65,10 @@ CC_career_stats %>%
 
 ```
 
-
 Note that she had more instances in her second season but also that she reaches 60 percent at least once as season. 
 
 
-# Caitlin's Assist's in Home vs. Away Games
+### Caitlin's Assist's in Home vs. Away Games
 
 ```{r}
 CC_career_stats %>%
@@ -86,11 +79,10 @@ CC_career_stats %>%
 
 ```
 
-
 She averaged more assists at away games than home games. 
 
 
-# Instances where Caitlin Scored over 40 Points in her Career
+### Instances where Caitlin Scored over 40 Points in her Career
 
 ```{r}
 CC_career_stats %>%
@@ -102,7 +94,7 @@ CC_career_stats %>%
 ```
 
 
-#Difference in Counts of Rebound Type Throughout her Career
+### Difference in Counts of Rebound Type Throughout her Career
 
 ```{r}
 CC_career_stats %>%
@@ -119,7 +111,7 @@ CC_career_stats %>%
 The number of offensive rebounds are consistently low while her defense rebound count is much higher and more spread out.
 
 
-#Dates, Results, and Field Goal Percentage of Limited Turnover Games (0 & 1) in her Career
+### Dates, Results, and Field Goal Percentage of Limited Turnover Games (0 & 1) in her Career
 
 ```{r}
 CC_career_stats %>%
@@ -130,7 +122,7 @@ CC_career_stats %>%
 ```
 
 
-#Games Caitlin had Greater than 12 Assists Lead to Wins
+### Games Caitlin had Greater than 12 Assists Lead to Wins
 
 ```{r}
 CC_career_stats %>%
@@ -141,7 +133,7 @@ CC_career_stats %>%
 ```
 
 
-#Difference in Result Based on her Assists 
+### Difference in Result Based on her Assists 
 
 ```{r}
 CC_career_stats %>%
@@ -158,12 +150,7 @@ CC_career_stats %>%
 
 When she reaches 11 assists in a game she has not lost. The times her team as lost, she commonly has a lower assist rate. 
 
-
-b. Depending on the scale of your date data, explore any notable patterns (number of observations,
-value of quantitative variable, etc.) that show up relating to day of the week, month of the year,
-etc.
-
-### Table of Game Results with Day of the Week Count  
+### Game Results with Day of the Week Count  
 
 ```{r}
 CC_career_stats%>%
@@ -181,6 +168,7 @@ The table above displays the day of the week and result of the game pair count. 
 
 
 ### Number of Games Caitlin Played in each Month 
+
 ```{r}
 CC_career_stats%>%
   mutate(month= month(Date, label=TRUE, abbr=TRUE))%>%
@@ -191,9 +179,6 @@ CC_career_stats%>%
 
 We can see the distribution of games is higher in the winter months which makes sense with the sports season. However, we can also see she played in many games in March and some in April which could be March Madness games. 
 
-
-c. Similarly, depending on the scale of your date data, explore any notable patterns that show up
-relating to weekend versus weekday, season/quarter of the year, etc. 
 
 ### Types of Games Played on the Weekends Versus Weekdays
 
@@ -215,7 +200,7 @@ CC_career_stats%>%
 Exploring the types of games she played in on the weekend versus the weekdays. Now we can see there is actually more games being played on the weekdays compared to the weekends. Highlighting the type of game helps us see how the amount they played in March Madness games (colors labeled starting with 'ROUND') and how often are those games on the weekend versus weekdays. We can see her and the team have been in more ROUND 16 games on the weekend compared to on the weekdays. 
 
 
-# Games Caitlin Played in per Season 
+### Games Caitlin Played in per Season 
 
 ```{r}
 CC_career_stats%>%
@@ -226,11 +211,10 @@ CC_career_stats%>%
   geom_bar() 
 ```
 
-
 Looking at the different seasons that Caitlin has played in, we can see the amount of games per season has increased gradually. However, she has played in about 30 games since the beginning of her career. The large jump between seasons 2 and 3 support her player development and determination. 
 
 
-### Conclusion 
+## Conclusion 
 
 This data set gives a comprehensive view of Caitlin Clark's stats for the games she has played in for the past 4 seasons. There are many important insights this data set can show. Overall trends we are shown are that she has played more each year, and has become a much better shooter in the past two years. Throughout exploring our variables we learned, Caitlin averages more assists during a game at home versus an away game. We highlighted the 5 instances over her 4 seasons that she shot over 60% from the 3- point line which is very impressive for a player at her age/level of experience. There were multiple instances in her second, third and fourth seasons she scored over 40 points in a game. Another interesting pattern we found was her defensive rebounds show a almost normal distribution while her offensive rebounds are heavily skewed to the right. In the line plot, is it shown that once Caitlin has 11 assists in a game the team has not lost. The lower bar plot shows the different types of games she has played on the weekends versus the weekdays, highlighting especially the playoff round games. We can also see Caitlin overall has increased the amount of games she played in per season gradually from her first to fourth. Overall, this data set gives a deep dive into Caitlin's influence on the team and their game results based on underlying patterns between variable pairs. 
 
