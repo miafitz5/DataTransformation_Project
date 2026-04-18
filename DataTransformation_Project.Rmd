@@ -75,7 +75,7 @@ CC_career_stats %>%
 Note that she had more instances in her second season but also that she reaches 60 percent at least once as season. 
 
 
-# Caitlin's Assist's on Home vs. Away
+# Caitlin's Assist's in Home vs. Away Games
 
 ```{r}
 CC_career_stats %>%
@@ -232,9 +232,8 @@ Looking at the different seasons that Caitlin has played in, we can see the amou
 
 ### Conclusion 
 
-This data set gives a comprehensive view of Caitlin Clark's stats for the games she has played in for the past 4 seasons. There are many important insights this data set can show. Overall trends we are shown are that she has played more each year, and has become a much better shooter in the past two years. We did not test the significance of this however it is displayed in the graphs and tables above. Caitlin averages more assists during a game at home versus an away game. 
+This data set gives a comprehensive view of Caitlin Clark's stats for the games she has played in for the past 4 seasons. There are many important insights this data set can show. Overall trends we are shown are that she has played more each year, and has become a much better shooter in the past two years. Throughout exploring our variables we learned, Caitlin averages more assists during a game at home versus an away game. We highlighted the 5 instances over her 4 seasons that she shot over 60% from the 3- point line which is very impressive for a player at her age/level of experience. There were multiple instances in her second, third and fourth seasons she scored over 40 points in a game. Another interesting pattern we found was her defensive rebounds show a almost normal distribution while her offensive rebounds are heavily skewed to the right. In the line plot, is it shown that once Caitlin has 11 assists in a game the team has not lost. The lower bar plot shows the different types of games she has played on the weekends versus the weekdays, highlighting especially the playoff round games. We can also see Caitlin overall has increased the amount of games she played in per season gradually from her first to fourth. Overall, this data set gives a deep dive into Caitlin's influence on the team and their game results based on underlying patterns between variable pairs. 
 
-Summarize your findings.
 
 
 
