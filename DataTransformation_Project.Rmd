@@ -19,9 +19,7 @@ library(tidyverse)
 
 ## Introduction 
 
-
-Describe your dataset and its topic, and summarize what it measures,
-and its sample size. 
+We used a dataset that tracks Caitlin Clark’s complete college basketball career at the University of Iowa, spanning from the start of the 2020-2021 season to the end of the 2023-2024 season. It measures her game-by-game performance across various categories, including her scoring volume, three-point shooting, assists, and defensive stats like rebounds and steals. These metrics provide a clear picture of her offensive efficiency and how much she contributed to the team's success in each matchup throughout her four years. The dataset contains a sample size of exactly 139 games, representing every game she made an appearance at during her time as a Hawkeye.
 Link: https://www.sports-reference.com/cbb/players/caitlin-clark-1/gamelog/ 
 
 
